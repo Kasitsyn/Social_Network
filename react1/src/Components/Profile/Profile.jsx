@@ -1,4 +1,5 @@
 import s from './Profile.module.css'
+import MyPosts from './MyPosts/MyPosts'
 const Profile = () => {
     return (
         <div className={s.content}>
@@ -9,18 +10,7 @@ const Profile = () => {
                 <img src='https://cdn.icon-icons.com/icons2/1879/PNG/512/iconfinder-7-avatar-2754582_120519.png' />
             </div>
             <div>
-                My POSTS
-                <div>
-                    New Post
-                    <div className={s.posts}>
-                        <div className={s.item}>
-                            post 1
-                        </div>
-                        <div className={s.item}>
-                            post 2
-                        </div>
-                    </div>
-                </div>
+                <MyPosts />
             </div>
         </div>
     );
