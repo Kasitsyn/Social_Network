@@ -1,0 +1,30 @@
+.app-wrapper {
+  background-color: white;
+  display: grid;
+  grid-template-areas: 
+  "h h"
+  "n c";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+  width: 1000px;
+}
+
+.header {
+  background-color: white;
+  grid-area: h;
+}
+
+.header img {
+  width: 60px;
+}
+
+.nav {
+  background-color: rgb(47, 240, 240);
+  grid-area: n;
+}
+
+.content {
+  background-color: yellowgreen;
+  grid-area: c;
+}
