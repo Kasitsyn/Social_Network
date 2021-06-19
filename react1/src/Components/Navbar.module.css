@@ -1,0 +1,10 @@
+.nav {
+    background-color: rgb(255, 255, 255);
+    grid-area: n;
+}
+
+.item {
+    text-decoration: none;
+    color: blue;
+    background-color: burlywood;
+}

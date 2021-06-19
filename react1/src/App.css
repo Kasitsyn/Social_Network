@@ -10,21 +10,6 @@
   width: 1000px;
 }
 
-.header {
-  background-color: white;
-  grid-area: h;
-}
 
-.header img {
-  width: 60px;
-}
 
-.nav {
-  background-color: rgb(47, 240, 240);
-  grid-area: n;
-}
 
-.content {
-  background-color: yellowgreen;
-  grid-area: c;
-}
