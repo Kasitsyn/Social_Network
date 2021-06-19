@@ -3,6 +3,7 @@ const Post = (props) => {
     return (
         <div className={s.item}>
             {props.message}
+            <p>{props.likesCount} Likes</p> 
         </div>
     );
 }
