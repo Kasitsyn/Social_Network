@@ -11,6 +11,7 @@ const Profile = () => {
             </div>
             <div>
                 <MyPosts />
+                ass
             </div>
         </div>
     );
