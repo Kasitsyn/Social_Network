@@ -8,10 +8,18 @@
 
 }
 
-.dialog {
+.dialog a {
+    /* color: rgb(48, 0, 0); */
+    text-decoration: none;
+    padding: 0 10px 0 10px  ;
 
 }
 
+.activeLink {
+    color: rgb(255, 255, 255);
+    background-color: rgb(41, 151, 255);
+}
+
 .messages {
-    
+
 }
