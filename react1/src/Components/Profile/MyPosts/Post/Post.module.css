@@ -1,4 +1,14 @@
 .item {
-    background: brown;
-    color: white;
+   
+  
+}
+
+.item img {
+    width: 50px;
+    vertical-align: middle; 
+    padding: 10px;
+}
+
+.likes {
+    padding-left: 150px;
 }
