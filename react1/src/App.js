@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './Components/Header/Header'
 import Navbar from './Components/Navbar/Navbar'
@@ -13,15 +12,17 @@ const App = (props) => {
         <Header />
         <Navbar />
         <div className="app-wrapper-content">
-          <Route path='/profile' render={ () => <Profile postData={props.postData}/>} />
-          <Route path='/dialogs' render={ () => <Dialogs dialogData={props.dialogData} messageData={props.messageData}/>} />
+          <Route path='/profile'
+            render={() => <Profile state={props.state.profilePage} />} />
+          <Route path='/dialogs'
+            render={() => <Dialogs state={props.state.messagesPage}/>} />
           <Route path='/news' component={Profile} />
           <Route path='/music' component={Profile} />
           <Route path='/settings' component={Profile} />
         </div>
       </BrowserRouter>
 
-      
+
     </div >
   );
 }

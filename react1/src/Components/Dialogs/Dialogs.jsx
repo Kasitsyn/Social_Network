@@ -1,13 +1,13 @@
 import s from './Dialogs.module.css'
-import { NavLink } from 'react-router-dom'
 import DialogsItem from './DialogItem/DialogsItem'
 import MessagesItem from './MessagesItem/MessagesItem'
 
 const Dialogs = (props) => {
+    
     return (
         <div className={s.dialogs}>
-            <DialogsItem dialogData={props.dialogData} />
-            <MessagesItem messageData={props.messageData} />
+            <DialogsItem dialogData={props.state.dialogData} />
+            <MessagesItem messageData={props.state.messageData} />
         </div>
     )
 }
