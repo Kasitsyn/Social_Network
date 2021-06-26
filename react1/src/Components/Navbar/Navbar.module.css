@@ -1,10 +1,25 @@
 .nav {
     background-color: rgb(255, 255, 255);
     grid-area: n;
+    padding: 20px;
+    
+   
 }
 
 .item {
-    text-decoration: none;
+    
     color: blue;
-    background-color: burlywood;
+    
+}
+
+.item a {
+    
+    color: rgb(48, 0, 0);
+    text-decoration: none;
+    padding: 0 10px 0 10px  ;
+}
+
+.item .activeLink {
+    color: rgb(255, 255, 255);
+    background-color: rgb(41, 151, 255);
 }
