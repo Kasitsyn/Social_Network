@@ -3,24 +3,25 @@ import Post from './Post/Post'
 import React from 'react'
 
 const MyPosts = (props) => {
-    
+
     let newPostElement = React.createRef()
 
     let addPost = () => {
-        let text = newPostElement.current.value
-        props.addPost(text)
-        newPostElement.current.value = ''
-        // debugger 
+        props.addPost(props.newPostText)
+    }
+
+    let postOnChange = () => {
+        props.updateNewPostText(newPostElement.current.value)
     }
 
     let postsElements = props.postData.map(p => <Post message={p.message} likesCount={p.likesCount} />)
-    
+
     return (
         <div className={s.postsBlock}>
             <div>
                 <h3>New post</h3>
                 <div>
-                    {/* <textarea ref={newPostElement} name="" cols="50" rows="5" placeholder="what's new?"></textarea> */}
+                    <textarea ref={newPostElement} onChange={postOnChange} name="" cols="50" rows="5" value={props.newPostText}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
@@ -35,8 +36,8 @@ const MyPosts = (props) => {
             </div>
 
         </div>
-        
+
     );
-    
+
 }
 export default MyPosts;

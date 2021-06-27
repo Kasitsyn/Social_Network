@@ -1,18 +1,21 @@
-import ReactDOM from 'react-dom'
 import React from 'react';
+import ReactDOM from 'react-dom';
 import App from './App';
-import { addPost } from './Redux/state';
+import { addPost, updateNewPostText } from './Redux/state';
 
 const rerender = (props) => {
     ReactDOM.render(
-      <React.StrictMode>
-  
-        <App state={props} addPost={addPost} />
-  
-      </React.StrictMode>,
-      document.getElementById('root')
-  
-    )
-  }
+        <React.StrictMode>
 
-  export default rerender
+            <App
+                state={props}
+                addPost={addPost}
+                updateNewPostText={updateNewPostText} />
+
+        </React.StrictMode>,
+        document.getElementById('root')
+
+    )
+}
+
+export default rerender
