@@ -1,4 +1,6 @@
-import rerender from "../render"
+let rerender = () => {
+    console.log('state has been changed')
+}
 
 let state = {
     profilePage: {
@@ -34,6 +36,10 @@ export let addPost = () => {
 export let updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText
     rerender(state)
+}
+
+export let subscriber = (observer) => {
+    rerender = observer
 }
 
 export default state
