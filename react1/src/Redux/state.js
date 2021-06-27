@@ -1,3 +1,5 @@
+import rerender from "../render"
+
 let state = {
     profilePage: {
         postData: [
@@ -22,9 +24,10 @@ let state = {
     }
 }
 
-export let addPost = () => {
-    let postMessage = {id: 3, message: "fuck you?", likesCount: 111}
+export let addPost = (post) => {
+    let postMessage = {id: 3, message: post, likesCount: 111}
     state.profilePage.postData.push(postMessage)
+    rerender(state)
 }
 
 export default state
