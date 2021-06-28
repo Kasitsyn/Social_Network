@@ -1,3 +1,5 @@
+
+
 let store = {
     _callSubscriber() {
         console.log('state has been changed')
@@ -31,18 +33,6 @@ let store = {
         return this._state
     },
 
-    // addPost() {
-    //     let postMessage = { id: 3, message: this._state.profilePage.newPostText, likesCount: 111 }
-    //     this._state.profilePage.postData.push(postMessage)
-    //     this._state.profilePage.newPostText = ''
-    //     this._callSubscriber(this._state)
-    // },
-
-    // updateNewPostText(newText) {
-    //     this._state.profilePage.newPostText = newText
-    //     this._callSubscriber(this._state)
-    // },
-
     subscriber(observer) {
         this._callSubscriber = observer
     },
@@ -59,5 +49,11 @@ let store = {
         }
     }
 }
+
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+export const addPostActionCreator = () => ({ type: ADD_POST })
+export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text })
+
 window.store = store
 export default store
