@@ -3,7 +3,7 @@ import Post from './Post/Post'
 import React from 'react'
 
 const MyPosts = (props) => {
-
+    // debugger
     let newPostElement = React.createRef()
 
     let addPost = () => {

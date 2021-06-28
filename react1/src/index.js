@@ -1,24 +1,25 @@
 import './index.css'
-import state, { subscriber } from './Redux/state'
+import store from './Redux/state'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { addPost, updateNewPostText } from './Redux/state';
 
 
-const rerender = (props) => {
+
+const rerender = (state) => {
+    // debugger
     ReactDOM.render(
         <React.StrictMode>
             <App
-                state={props}
-                addPost={addPost}
-                updateNewPostText={updateNewPostText} />
+                state={state}
+                addPost={store.addPost.bind(store)}
+                updateNewPostText={store.updateNewPostText.bind(store)} />
         </React.StrictMode>,
         document.getElementById('root')
     )
 }
 
-rerender(state)
+rerender(store.getState())
 
-subscriber(rerender)
+store.subscriber(rerender)
 

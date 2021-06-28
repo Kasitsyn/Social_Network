@@ -5,7 +5,7 @@ import Profile from './Components/Profile/Profile'
 import Dialogs from './Components/Dialogs/Dialogs';
 import { BrowserRouter, Route } from 'react-router-dom';
 const App = (props) => {
-
+  // debugger
   return (
     <div className='app-wrapper'>
       <BrowserRouter>
