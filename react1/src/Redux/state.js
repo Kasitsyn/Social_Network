@@ -22,20 +22,9 @@ let state = {
     }
 }
 
-<<<<<<< HEAD
-export let addPost = (postMessage) => {
-    let newPost = {
-        id: 3, 
-        message: postMessage,
-        likesCount: 100
-    }
-
-    state.profilePage.postData.push(newPost)
-=======
 export let addPost = () => {
     let postMessage = {id: 3, message: "fuck you?", likesCount: 111}
     state.profilePage.postData.push(postMessage)
->>>>>>> 3036694de446d207ca635a69e9a3a47e5964468c
 }
 
 export default state
