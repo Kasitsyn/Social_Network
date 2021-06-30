@@ -3,11 +3,15 @@ import DialogsItem from './DialogItem/DialogsItem'
 import MessagesItem from './MessagesItem/MessagesItem'
 
 const Dialogs = (props) => {
-    
+
     return (
         <div className={s.dialogs}>
-            <DialogsItem dialogData={props.state.dialogData} />
-            <MessagesItem messageData={props.state.messageData} />
+            <DialogsItem dialogData={props.messagesPage.dialogData} />
+            <MessagesItem
+                messageData={props.messagesPage.messageData}
+                newMessageBody={props.messagesPage.newMessageBody}
+                dispatch={props.dispatch}
+            />
         </div>
     )
 }

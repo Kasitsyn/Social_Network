@@ -25,7 +25,7 @@ let store = {
                 { id: 2, message: "How are you?" },
                 { id: 3, message: "Good luck!!" }
             ],
-            newMessageBody: ""
+            newMessageBody: "chekchek"
         }
         
     },
@@ -62,8 +62,9 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 export const addPostActionCreator = () => ({ type: ADD_POST })
-export const updateNewPostTextActionCreator = (body) => ({ type: UPDATE_NEW_POST_TEXT, body: body })
+export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text })
 export const sendMessageCreator = () => ({ type: SEND_MESSAGE})
+export const updateNewMessageBodyCreator = (body) => ({ type: UPDATE_NEW_MESSAGE_BODY, body: body })
 
 window.store = store
 export default store
