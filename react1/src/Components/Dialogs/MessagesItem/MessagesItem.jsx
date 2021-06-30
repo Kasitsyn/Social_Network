@@ -13,8 +13,15 @@ const MessagesItem = (props) => {
     return (
         <div className={s.dialogs}>
             <div className={s.messages}>
-                {messageElements}
+                <div>{messageElements}</div>
             </div>
+            <div>
+                <textarea placeholder='enter your message'></textarea>
+            </div>
+            <div>
+                <button onClick>Send</button>
+            </div>
+            <div></div>
         </div>
     )
 
