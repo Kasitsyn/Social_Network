@@ -25,7 +25,7 @@ let store = {
                 { id: 2, message: "How are you?" },
                 { id: 3, message: "Good luck!!" }
             ],
-            newMessageBody: "chekchek"
+            newMessageBody: ""
         }
         
     },
@@ -51,7 +51,11 @@ let store = {
             this._callSubscriber(this._state)
         } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
             this._state.messagesPage.newMessageBody = action.body
-            this._state.messagesPage.messageData.push({id: 6, message: "AbraCadabra"})
+            this._callSubscriber(this._state)
+        } else if (action.type === SEND_MESSAGE) {
+            let newMessage = {id: 6, message: this._state.messagesPage.newMessageBody}
+            this._state.messagesPage.messageData.push(newMessage)
+            this._state.messagesPage.newMessageBody = ''
             this._callSubscriber(this._state)
         }
     }
