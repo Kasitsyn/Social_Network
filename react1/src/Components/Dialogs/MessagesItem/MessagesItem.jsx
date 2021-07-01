@@ -12,8 +12,8 @@ const MessagesItem = (props) => {
 
     let newMessageElement = React.createRef()
 
-    let messageOnChange = () => {
-        let body = newMessageElement.current.value
+    let messageOnChange = (e) => {
+        let body = e.target.value
         props.dispatch(updateNewMessageBodyCreator(body))
         console.log(props)
     }
