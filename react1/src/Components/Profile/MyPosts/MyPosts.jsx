@@ -14,10 +14,6 @@ const MyPosts = (props) => {
     let postOnChange = () => {
         let text = newPostElement.current.value
         props.dispatch(updateNewPostTextActionCreator(text)) 
-<<<<<<< HEAD
-         
-=======
->>>>>>> 805699b7f8e0e24a5893f83f9f28217134d9e112
     }
 
     let postsElements = props.postData.map(p => <Post message={p.message} likesCount={p.likesCount} />)
