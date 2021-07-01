@@ -18,6 +18,9 @@ const DialogsItem = (props) => {
             <div className={s.dialogsItem}>
                 {dialogElements}
             </div>
+            <div>
+                
+            </div>
         </div>
     )
 

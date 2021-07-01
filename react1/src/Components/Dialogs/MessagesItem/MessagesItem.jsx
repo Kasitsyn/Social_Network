@@ -1,26 +1,29 @@
 import s from './../Dialogs.module.css'
 import React from 'react'
-import { updateNewMessageBodyCreator } from '../../../Redux/state'
+import { sendMessageCreator, updateNewMessageBodyCreator } from '../../../Redux/state'
+
 const Message = (props) => {
     return (
         <div className={s.dialog}>{props.message}</div>
     )
 }
 
-
-
 const MessagesItem = (props) => {
 
     let newMessageElement = React.createRef()
 
-    let messageOnChange = () => {
-        let body = newMessageElement.current.value
+    let messageOnChange = (e) => {
+        let body = e.target.value
         props.dispatch(updateNewMessageBodyCreator(body))
-        console.log(props)  
+        console.log(props)
+    }
+
+    let onSendMessageClick = () => {
+        props.dispatch(sendMessageCreator())
     }
 
     let messageElements = props.messageData.map(m => <Message message={m.message} />)
-    let onSendMessageClick = () => alert('ass')
+
     return (
         <div className={s.dialogs}>
             <div className={s.messages}>

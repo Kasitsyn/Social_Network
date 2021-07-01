@@ -14,7 +14,10 @@ const MyPosts = (props) => {
     let postOnChange = () => {
         let text = newPostElement.current.value
         props.dispatch(updateNewPostTextActionCreator(text)) 
+<<<<<<< HEAD
          
+=======
+>>>>>>> 805699b7f8e0e24a5893f83f9f28217134d9e112
     }
 
     let postsElements = props.postData.map(p => <Post message={p.message} likesCount={p.likesCount} />)
@@ -24,7 +27,7 @@ const MyPosts = (props) => {
             <div>
                 <h3>New post</h3>
                 <div>
-                    <textarea ref={newPostElement} onChange={postOnChange} name="" cols="50" rows="5" value={props.newPostText}></textarea>
+                    <textarea ref={newPostElement} placeholder="what's new?" onChange={postOnChange} name="" cols="50" rows="5" value={props.newPostText}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
