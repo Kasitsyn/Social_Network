@@ -1,17 +1,21 @@
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+export const addPostActionCreator = () => ({ type: ADD_POST })
+export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text })
 
- const profileReducer = (state, action) => {
-    if (action.type === 'ADD-POST') {
-        let postMessage = { id: 3, message: this._state.profilePage.newPostText, likesCount: 111 }
-        state.postData.push(postMessage)
-        state.newPostText = ''
-        
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-        state.newPostText = action.newText
-        
+const profileReducer = (state, action) => {
+    switch (action.type) {
+        case ADD_POST:
+            let postMessage = { id: 3, message: state.newPostText, likesCount: 111 }
+            state.postData.push(postMessage)
+            state.newPostText = ''
+            return state
+        case UPDATE_NEW_POST_TEXT:
+            state.newPostText = action.newText
+            return state
+        default:
+            return state
     }
-    return state
 }
 
-export default profileReducer  
+export default profileReducer

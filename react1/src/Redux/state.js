@@ -1,7 +1,11 @@
 
 import profileReducer from './profile-reducer';
 import dialogsReducer from './dialogs-reducer';
-
+    
+// const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
+// const SEND_MESSAGE = 'SEND_MESSAGE'
+// const ADD_POST = 'ADD-POST'
+// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 let store = {
     _callSubscriber() {
         console.log('state has been changed')
@@ -43,17 +47,16 @@ let store = {
     },
 
     dispatch(action) {
-        profileReducer(_state.profilePage) 
-        dialogsReducer(_state.messagesPage) 
+        this._state.profileReducer = profileReducer(this._state.profilePage, action) 
+        this._state.dialogsReducer = dialogsReducer(this._state.messagesPage, action)
+        this._callSubscriber(this._state)
     }
 }
 
 
 
-export const addPostActionCreator = () => ({ type: ADD_POST })
-export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text })
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE})
-export const updateNewMessageBodyCreator = (body) => ({ type: UPDATE_NEW_MESSAGE_BODY, body: body })
+
+
 
 window.store = store
 export default store
