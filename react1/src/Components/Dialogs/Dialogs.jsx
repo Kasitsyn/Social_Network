@@ -3,13 +3,15 @@ import DialogsItem from './DialogItem/DialogsItem'
 import MessagesItem from './MessagesItem/MessagesItem'
 
 const Dialogs = (props) => {
-//debugger
+    // debugger
+    // let state = props.store.getState()
     return (
         <div className={s.dialogs}>
-            <DialogsItem dialogData={props.messagesPage.dialogData} />
+            <DialogsItem 
+                dialogData={props.dialogData} />
             <MessagesItem
-                messageData={props.messagesPage.messageData}
-                newMessageBody={props.messagesPage.newMessageBody}
+                messageData={props.messageData}
+                newMessageBody={props.newMessageBody}
                 dispatch={props.dispatch}
             />
         </div>
