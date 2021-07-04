@@ -1,5 +1,5 @@
 import './index.css'
-import store from './Redux/state'
+import store from './Redux/redux-store'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -11,8 +11,9 @@ const rerender = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <App
-                state = {state}
-                dispatch = {store.dispatch.bind(store)} />
+                state={state}
+                store={store}
+                dispatch={store.dispatch.bind(store)} />
         </React.StrictMode>,
         document.getElementById('root')
     )
@@ -20,5 +21,8 @@ const rerender = (state) => {
 
 rerender(store.getState())
 
-store.subscriber(rerender)
+store.subscribe( () => {
+    let state = store.getState()
+    rerender(state)
+})
 

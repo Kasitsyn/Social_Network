@@ -3,7 +3,7 @@ import DialogsItem from './DialogItem/DialogsItem'
 import MessagesItem from './MessagesItem/MessagesItem'
 
 const Dialogs = (props) => {
-
+//debugger
     return (
         <div className={s.dialogs}>
             <DialogsItem dialogData={props.messagesPage.dialogData} />
