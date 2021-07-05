@@ -1,5 +1,5 @@
 import React from 'react'
 
-const StorContext = React.createContext(null)
+const StoreContext = React.createContext(null)
 
-export default StorContext 
+export default StoreContext 

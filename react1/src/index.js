@@ -3,7 +3,8 @@ import store from './Redux/redux-store'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import StoreContext from './StoreContext';
 
 
 
@@ -12,16 +13,12 @@ const rerender = (state) => {
     ReactDOM.render(
         <BrowserRouter>
             <StoreContext.Provider value={store}>
-                <React.StrictMode>
-                    <App/>
-                        {/* state={state}
+                <App />
+                {/* state={state}
                         store={store}
                         dispatch={store.dispatch.bind(store) */}
-                </React.StrictMode>
             </StoreContext.Provider>
-        </BrowserRouter>,
-        
-        document.getElementById('root')
+        </BrowserRouter>, document.getElementById('root')
     )
 }
 
