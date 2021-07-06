@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import StoreContext from './StoreContext';
+import { Provider } from 'react-redux';
 
 
 
@@ -12,12 +12,12 @@ const rerender = (state) => {
     // debugger
     ReactDOM.render(
         <BrowserRouter>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <App />
                 {/* state={state}
                         store={store}
                         dispatch={store.dispatch.bind(store) */}
-            </StoreContext.Provider>
+            </Provider>
         </BrowserRouter>, document.getElementById('root')
     )
 }
