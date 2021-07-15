@@ -22,7 +22,7 @@ const MessagesItem = (props) => {
         props.dispatch(sendMessageCreator())
     }
 
-    let messageElements = props.messageData.map(m => <Message message={m.message} />)
+    let messageElements = props.messageData.map(m => <Message message={m.message} key={m.id} />)
 
     return (
         <div className={s.dialogs}>
