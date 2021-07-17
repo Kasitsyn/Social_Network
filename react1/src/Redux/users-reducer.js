@@ -2,7 +2,7 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 export const followAC = (userId) => ({ type: FOLLOW, userId })
-export const unFollowAC = (userId) => ({ type: UNFOLLOW, userId })
+export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId })
 export const setUsers = (users) => ({ type: SET_USERS, users })
 
 let initialState = {
@@ -15,19 +15,45 @@ let initialState = {
                 city: "Novosibirsk",
                 country: "Russia"
             },
-            status: 'bored'
+            status: 'bored',
+            avatar: 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png'
 
         },
 
         {
             id: 2,
             follow: "true",
-            name: "Alex",
+            fullname: "Alex",
             location: {
                 city: "Boston",
                 country: "USA"
             },
-            status: 'bored'
+            status: 'happy',
+            avatar: 'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png'
+        },
+
+        {
+            id: 3,
+            follow: "true",
+            fullname: "Boris",
+            location: {
+                city: "London",
+                country: "England"
+            },
+            status: 'sad',
+            avatar: 'https://cdn.iconscout.com/icon/free/png-512/avatar-366-456318.png'
+        },
+
+        {
+            id: 4,
+            follow: "true",
+            fullname: "Helga",
+            location: {
+                city: "Phuket",
+                country: "Thai"
+            },
+            status: 'angry!!',
+            avatar: 'https://www.pikpng.com/pngl/b/279-2797047_user-avatar-icon-portable-network-graphics-clipart.png'
         }
     ]
 }
