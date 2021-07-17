@@ -1,19 +1,19 @@
 import { connect } from 'react-redux'
+import { followAC, unfollowAC } from '../../Redux/users-reducer'
 import Users from './Users'
 
 let mapStateToProps = (state) => {
     return {
-        state.
+        users: state.usersPage.users
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        dispatch: dispatch
+        follow: (userId) => dispatch(followAC(userId)),
+        unfollow: (userId) => dispatch(unfollowAC(userId))
     }
-
-
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-export default DialogsContainer
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+export default UsersContainer

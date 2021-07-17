@@ -4,7 +4,6 @@ import MessagesItem from './MessagesItem/MessagesItem'
 
 const Dialogs = (props) => {
     // debugger
-    // let state = props.store.getState()
     return (
         <div className={s.dialogs}>
             <DialogsItem 
