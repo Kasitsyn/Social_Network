@@ -1,11 +1,9 @@
 import { connect } from 'react-redux'
-import Dialogs from './Dialogs'
+import Users from './Users'
 
 let mapStateToProps = (state) => {
     return {
-        dialogData: state.messagesPage.dialogData,
-        messageData: state.messagesPage.messageData,
-        newMessageBody: state.messagesPage.newMessageBody
+        state.
     }
 }
 
