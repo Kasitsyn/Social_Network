@@ -16,7 +16,7 @@ let initialState = {
                 country: "Russia"
             },
             status: 'bored',
-            avatar: 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png'
+            avatar: 'https://www.pngarts.com/files/11/Avatar-Free-PNG-Image.png'
 
         },
 
