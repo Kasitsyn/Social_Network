@@ -2,7 +2,7 @@ import React from 'react'
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/Avatar.png'
 import style from './Users.module.css'
-
+import { NavLink } from 'react-router-dom'
 
 const Users = (props) => {
 
@@ -28,7 +28,10 @@ const Users = (props) => {
                 return <div key={user.id}>
                     <span>
                         <div className={s.item}>
-                            <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="avatar" />
+                            <NavLink to={'/profile/' + user.id}>
+                                <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="avatar" />
+                            </NavLink>
+
                         </div>
                         <div>
                             {

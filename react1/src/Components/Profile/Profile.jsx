@@ -1,13 +1,14 @@
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostContainer';
-
-const Profile = (props) => {
-    // debugger
-    return (
-        <div>
-            <ProfileInfo />
-            <MyPostsContainer />
-        </div>
-    )
+import React from 'react';
+class ProfileContainer extends React.Component {
+    render() {
+        return (
+            <div>
+                <ProfileInfo />
+                <MyPostsContainer />
+            </div >
+        )
+    }
 }
-export default Profile;
+export default ProfileContainer;
