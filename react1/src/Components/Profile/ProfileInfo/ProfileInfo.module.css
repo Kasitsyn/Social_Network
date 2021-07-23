@@ -3,3 +3,8 @@
     width: 100%;
     
 }
+
+.photoLarge img {
+    margin: 0 auto;
+    width: 25%;
+}

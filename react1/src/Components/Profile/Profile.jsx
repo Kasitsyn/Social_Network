@@ -3,7 +3,7 @@ import MyPostsContainer from './MyPosts/MyPostContainer';
 import React from 'react';
 
 const Profile = (props) => {
-    debugger
+    //debugger
     return (
         <div>
             <ProfileInfo profile={props.profile}/>
