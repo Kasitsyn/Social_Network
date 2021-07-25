@@ -7,10 +7,11 @@
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
-  width: 1000px;
+  
 }
 
 .app-wrapper-content {
   background-color: rgb(255, 255, 255);
   grid-area: c;
+  width: 100%;
 }

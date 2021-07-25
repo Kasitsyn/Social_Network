@@ -1,5 +1,6 @@
 import Preloader from "../../common/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
+import banner from "../../../assets/images/banner.png"
 const ProfileInfo = (props) => {
     //debugger
     if (!props.profile) {
@@ -11,8 +12,8 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={s.wrapper}>
-            <div>
-                <img src='https://res.cloudinary.com/omaha-code/image/upload/ar_4:3,c_fill,dpr_1.0,e_art:quartz,g_auto,h_396,q_auto:best,t_Linkedin_official,w_1584/v1561576558/mountains-1412683_1280.png' />
+            <div className={s.banner}>
+                <img src={banner} />
             </div>
             <div className={s.photoLarge}>
                 <img src={props.profile.photos.large} alt="" />
