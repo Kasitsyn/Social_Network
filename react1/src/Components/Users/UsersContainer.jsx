@@ -5,7 +5,8 @@ import {
     setUsers,
     setCurrentPage,
     setTotalUserCount,
-    toggleIsFetching
+    toggleIsFetching,
+    toggleIsFollowInProgress
 } from '../../Redux/users-reducer'
 import Users from './Users'
 import * as axios from 'axios'
@@ -15,19 +16,20 @@ import { usersAPI } from '../../api/api'
 
 
 
+
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true)
+        this.props.toggleIsFetching(true )
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.setUsers(data.items)
             this.props.setTotalUserCount(data.totalCount)
             this.props.toggleIsFetching(false)
-            
+
         })
     }
 
     onPageChanged(pageNumber) {
-        
+
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
         usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
@@ -50,7 +52,9 @@ class UsersContainer extends React.Component {
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
                     onPageChanged={this.onPageChanged.bind(this)}
-                    isFetching={this.props.isFetching} />}
+                    isFetching={this.props.isFetching}
+                    followInProgress={this.props.followInProgress}
+                    toggleIsFollowInProgress={this.props.toggleIsFollowInProgress} />}
 
 
         </>
@@ -65,7 +69,8 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followInProgress: state.usersPage.followInProgress
 
 
     }
@@ -77,5 +82,6 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalUserCount,
-    toggleIsFetching
+    toggleIsFetching,
+    toggleIsFollowInProgress
 })(UsersContainer)
