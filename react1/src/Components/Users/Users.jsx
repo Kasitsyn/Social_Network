@@ -3,8 +3,8 @@ import s from './Users.module.css'
 import userPhoto from '../../assets/images/Avatar.png'
 import style from './Users.module.css'
 import { NavLink } from 'react-router-dom'
-import axios from 'axios'
-import { usersAPI } from './../../api/api';
+import { unFollowThunk, followThunk } from './../../Redux/users-reducer';
+
 
 const Users = (props) => {
 
@@ -43,23 +43,11 @@ const Users = (props) => {
                         <div>
                             {
                                 user.followed
-                                    ? <button disabled={disabledFunc(user)} onClick={() => {
-                                        props.toggleIsFollowInProgress(true, user.id)
-                                        usersAPI.unFollow(user.id).then(response => {
-                                            if (response.data.resultCode === 0) props.unfollow(user.id)
-                                            props.toggleIsFollowInProgress(false, user.id)
-                                        })
-                                    }}>
+                                    ? <button disabled={disabledFunc(user)} onClick={() => props.unFollowThunk(user.id)}>
                                         UNFOLLOW
                                     </button>
 
-                                    : <button disabled={disabledFunc(user)} onClick={() => {
-                                        props.toggleIsFollowInProgress(true, user.id)
-                                        usersAPI.toFollow(user.id).then(response => {
-                                            if (response.data.resultCode === 0) props.follow(user.id)
-                                            props.toggleIsFollowInProgress(false, user.id)
-                                        })
-                                    }}>
+                                    : <button disabled={disabledFunc(user)} onClick={() => props.followThunk(user.id)}>
                                         FOLLOW
                                     </button>
                             }

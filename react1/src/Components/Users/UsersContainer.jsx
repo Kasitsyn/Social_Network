@@ -6,37 +6,28 @@ import {
     setCurrentPage,
     setTotalUserCount,
     toggleIsFetching,
-    toggleIsFollowInProgress
+    toggleIsFollowInProgress,
+    getUsers,
+    unFollowThunk,
+    followThunk
 } from '../../Redux/users-reducer'
 import Users from './Users'
-import * as axios from 'axios'
 import React from 'react'
 import Preloader from '../common/Preloader/Preloader'
-import { usersAPI } from '../../api/api'
+
+
+
 
 
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true )
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.setTotalUserCount(data.totalCount)
-            this.props.toggleIsFetching(false)
-
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged(pageNumber) {
-
-        this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(pageNumber)
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.toggleIsFetching(false)
-        })
-
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
@@ -54,7 +45,9 @@ class UsersContainer extends React.Component {
                     onPageChanged={this.onPageChanged.bind(this)}
                     isFetching={this.props.isFetching}
                     followInProgress={this.props.followInProgress}
-                    toggleIsFollowInProgress={this.props.toggleIsFollowInProgress} />}
+                    toggleIsFollowInProgress={this.props.toggleIsFollowInProgress}
+                    unFollowThunk={this.props.unFollowThunk}
+                    followThunk={this.props.followThunk} />}
 
 
         </>
@@ -83,5 +76,8 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setTotalUserCount,
     toggleIsFetching,
-    toggleIsFollowInProgress
+    toggleIsFollowInProgress,
+    getUsers,
+    unFollowThunk,
+    followThunk
 })(UsersContainer)

@@ -1,3 +1,5 @@
+import { usersAPI } from './../api/api';
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -73,6 +75,43 @@ const usersReducer = (state = initialState, action) => {
             }
         default:
             return state
+    }
+}
+
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUserCount(data.totalCount))
+
+
+        })
+    }
+}
+
+export const unFollowThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowInProgress(true, userId))
+        usersAPI.unFollow(userId).then(response => {
+            if (response.data.resultCode === 0) dispatch(unfollow(userId))
+            dispatch(toggleIsFollowInProgress(false, userId))
+        })
+
+
+    }
+}
+
+export const followThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowInProgress(true, userId))
+        usersAPI.toFollow(userId).then(response => {
+            if (response.data.resultCode === 0) dispatch(follow(userId))
+            dispatch(toggleIsFollowInProgress(false, userId))
+        })
+
+
     }
 }
 
