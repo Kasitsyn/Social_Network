@@ -3,7 +3,7 @@ import s from './Users.module.css'
 import userPhoto from '../../assets/images/Avatar.png'
 import style from './Users.module.css'
 import { NavLink } from 'react-router-dom'
-import { unFollowThunk, followThunk } from './../../Redux/users-reducer';
+
 
 
 const Users = (props) => {

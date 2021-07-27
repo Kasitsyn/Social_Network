@@ -4,7 +4,7 @@ const Header = (props) => {
     //debugger
     return (
         <header className={s.header}>
-            <img src='https://www.edigitalagency.com.au/wp-content/uploads/Instagram-logo-acrylic-splash.png' />
+            <img src='https://www.edigitalagency.com.au/wp-content/uploads/Instagram-logo-acrylic-splash.png' alt="logo"/>
             <div className={s.loginBlock}>
                 {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink> }
                 

@@ -15,12 +15,6 @@ import Users from './Users'
 import React from 'react'
 import Preloader from '../common/Preloader/Preloader'
 
-
-
-
-
-
-
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)

@@ -2,7 +2,6 @@ import Preloader from "../../common/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import banner from "../../../assets/images/banner.png"
 const ProfileInfo = (props) => {
-    //debugger
     if (!props.profile) {
         return <div>
             <Preloader />
@@ -13,7 +12,7 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.wrapper}>
             <div className={s.banner}>
-                <img src={banner} />
+                <img src={banner} alt="banner"/>
             </div>
             <div className={s.photoLarge}>
                 <img src={props.profile.photos.large} alt="" />
