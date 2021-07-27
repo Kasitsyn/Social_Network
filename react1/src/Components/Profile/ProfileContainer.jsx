@@ -31,15 +31,3 @@ let mapStateToProps = (state) => ({
 })
 
 export default compose(connect(mapStateToProps, { setUserProfileThunk }), withRouter, withAuthRedirect)(ProfileContainer)
-
-// let AuthRedirect = withAuthRedirect(ProfileContainer)
-
-// // let mapStateToPropsForRedirect = (state) => ({
-// //     isAuth: state.auth.isAuth
-// // })
-
-// // AuthRedirect = connect(mapStateToPropsForRedirect)(AuthRedirect)
-
-// let WithRouterProfileContainer = withRouter(AuthRedirect)
-
-// export default connect(mapStateToProps, { setUserProfileThunk })(WithRouterProfileContainer);
