@@ -1,9 +1,10 @@
 import s from './Dialogs.module.css'
 import DialogsItem from './DialogItem/DialogsItem'
 import MessagesItem from './MessagesItem/MessagesItem'
+import { Redirect } from 'react-router-dom';
 
 const Dialogs = (props) => {
-    // debugger
+    
     return (
         <div className={s.dialogs}>
             <DialogsItem 
