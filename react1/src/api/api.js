@@ -23,7 +23,8 @@ export const usersAPI = {
     },
 
     setUser(userId) {
-        return instance.get(`profile/${userId}`)
+        console.warn('obsolete method. Please use profileAPI object')
+        return profileAPI.setUser(userId)
     }
 }
 
@@ -32,4 +33,20 @@ export const authAPI = {
         return instance.get(`auth/me`)
     }
 }
+
+export const profileAPI = {
+    setUser(userId) {
+        return instance.get(`profile/${userId}`)
+    },
+
+    getStatus(userId) {
+        return instance.get(`profile/status/${userId}`)
+    },
+
+    updateStatus(status) {
+        return instance.put('profile/status', {status})
+    }
+    
+}
+
 
