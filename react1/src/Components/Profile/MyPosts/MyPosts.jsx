@@ -1,6 +1,21 @@
 import React from 'react'
+import { Field } from 'redux-form'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
+import { reduxForm } from 'redux-form';
+
+const MyPostForm = (props) => {
+    return (
+        <form action="" onSubmit={props.handleSubmit}>
+            <div>
+                <Field placeholder="what's new?" name='newPostText' component={'textarea'} />
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
+}
 
 const MyPosts = (props) => {
     // debugger
@@ -8,25 +23,21 @@ const MyPosts = (props) => {
 
     let postsElements = props.posts.map(p => <Post message={p.message} key={p.id} likesCount={p.likesCount} />)
 
-    let onAddPost = () => {
-        props.addPost()
+    let onAddPost = (values) => {
+        props.addPost(values.newPostText)
+        //alert(values.newPostText)
     }
 
-    let onPostOnChange = () => {
-        let text = newPostElement.current.value
-        props.postOnChange(text)
-    }
+    // let onPostOnChange = () => {
+    //     let text = newPostElement.current.value
+    //     props.postOnChange(text)
+    // }
 
     return (
         <div className={s.postsBlock}>
             <div>
                 <h3>New post</h3>
-                <div>
-                    <textarea ref={newPostElement} placeholder="what's new?" onChange={onPostOnChange} name="" cols="50" rows="5" value={props.newPostText}></textarea>
-                </div>
-                <div>
-                    <button onClick={onAddPost}>Add post</button>
-                </div>
+                <MyPostReduxForm onSubmit={onAddPost} />
             </div>
             <div>
                 <h3>My posts</h3>
@@ -41,4 +52,7 @@ const MyPosts = (props) => {
     );
 
 }
+
+let MyPostReduxForm = reduxForm({ form: 'dialogsAddMessageForm' })(MyPostForm)
+
 export default MyPosts;
