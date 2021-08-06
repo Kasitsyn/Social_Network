@@ -1,7 +1,7 @@
 import s from './Dialogs.module.css'
 import DialogsItem from './DialogItem/DialogsItem'
 import MessagesItem from './MessagesItem/MessagesItem'
-import { Redirect } from 'react-router-dom';
+
 
 const Dialogs = (props) => {
     
@@ -11,8 +11,8 @@ const Dialogs = (props) => {
                 dialogData={props.dialogData} />
             <MessagesItem
                 messageData={props.messageData}
-                newMessageBody={props.newMessageBody}
-                dispatch={props.dispatch}
+                //newMessageBody={props.newMessageBody}
+                sendMessage={props.sendMessage}
             />
         </div>
     )
