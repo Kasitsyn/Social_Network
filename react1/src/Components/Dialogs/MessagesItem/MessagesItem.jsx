@@ -3,6 +3,9 @@ import React from 'react'
 import { sendMessageCreator, updateNewMessageBodyCreator } from '../../../Redux/dialogs-reducer'
 import { Field } from 'redux-form'
 import { reduxForm } from 'redux-form';
+import { Textarea } from '../../common/FormsControls/FormsControls';
+import { maxLengthCreator, required } from './../../../utils/validators/validators';
+
 
 const Message = (props) => {
     return (
@@ -10,31 +13,26 @@ const Message = (props) => {
     )
 }
 
+const maxLength100 = maxLengthCreator(100)
+
 const MessageForm = (props) => {
+
     return (
         <form action="" onSubmit={props.handleSubmit}>
-            <Field component='textarea' placeholder='enter your message' name='newMessageBody'/>
+            <Field component={Textarea} validate={[required, maxLength100]} placeholder='enter your message' name='newMessageBody' />
             <button>Send</button>
         </form>
     )
 }
 
-let MessageReduxForm = reduxForm({form: 'dialogs'})(MessageForm)
+let MessageReduxForm = reduxForm({ form: 'dialogs' })(MessageForm)
 
 const MessagesItem = (props) => {
-
-    // let newMessageElement = React.createRef()
-
-    // let messageOnChange = (e) => {
-    //     let body = e.target.value
-    //     props.dispatch(updateNewMessageBodyCreator(body))
-
-    // }
 
     let onSendMessageClick = (values) => {
 
         props.sendMessage(values.newMessageBody)
-        //alert(values.newMessageBody)
+
     }
 
     let messageElements = props.messageData.map(m => <Message message={m.message} key={m.id} />)
