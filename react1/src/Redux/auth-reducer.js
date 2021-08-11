@@ -15,8 +15,7 @@ const authReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             }
 
         default:
@@ -24,17 +23,45 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } })
-export const setAuthUserDataThunk = () => {
-    return (dispatch) => {
-        authAPI.me().then(response => {
-            if (response.data.resultCode === 0) {
-                let { id, login, email } = response.data.data
-                dispatch(setAuthUserData(id, email, login))
-            }
-        })
-    }
+const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } })
+export const setAuthUserDataThunk = () => (dispatch) => {
+    authAPI.me().then(response => {
+        if (response.data.resultCode === 0) {
+            let { id, login, email } = response.data.data
+            dispatch(setAuthUserData(id, email, login, true))
+        }
+    })
 }
+
+export const logIn = (email, password, rememberMe) => (dispatch) => {
+
+
+
+    authAPI.login(email, password, rememberMe).then(response => {
+
+        if (response.data.resultCode === 0) {
+            dispatch(setAuthUserDataThunk())
+
+        }
+        if (response.data.resultCode === 1) {
+            alert('Wrong email of password')
+
+        }
+    })
+}
+
+
+export const logout = () => (dispatch) => {
+
+    authAPI.logout().then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(setAuthUserData(null, null, null, false))
+        }
+    })
+}
+
+
+
 
 
 
