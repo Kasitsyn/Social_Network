@@ -9,7 +9,10 @@ import { compose } from 'redux';
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
+
 })
 
 class ProfileContainer extends React.Component {
