@@ -1,18 +1,12 @@
-// let mapStateToProps = (state) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followInProgress: state.usersPage.followInProgress
-//     }
-// }
+import { createSelector } from "reselect"
 
-export const getAllUsers = (state) => {
+const getAllUsersSelector = (state) => {
     return state.usersPage.users
 }
+
+export const getAllUsers = createSelector(getAllUsersSelector, (users) => {
+    return users.filter(u => true)
+})
 
 export const getPageSize = (state) => {
     return state.usersPage.pageSize
@@ -33,4 +27,8 @@ export const getIsFetching = (state) => {
 export const getFollowInProgress = (state) => {
     return state.usersPage.followInProgress
 }
+
+
+
+
 
