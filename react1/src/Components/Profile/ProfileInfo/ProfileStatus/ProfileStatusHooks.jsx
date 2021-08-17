@@ -1,6 +1,7 @@
 import s from "./ProfileStatus.module.css"
 import React from 'react';
 import { useState } from "react";
+import { useEffect } from "react";
 // import { updateStatus } from './../../../../Redux/profile-reducer';
 
 const ProfileStatusHooks = (props) => {
@@ -14,6 +15,10 @@ const ProfileStatusHooks = (props) => {
 
     }
 
+    useEffect(() => {
+        setStatus(props.status)
+    }, [props.status])
+
     const deactivateEditMode = () => {
         setEditMode(false)
         props.updateStatus(status)
@@ -23,6 +28,7 @@ const ProfileStatusHooks = (props) => {
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value)
     }
+
 
     return (
         <div>
@@ -35,7 +41,7 @@ const ProfileStatusHooks = (props) => {
             {
                 editMode &&
                 <div className={s.wrapper}>
-                    <input onChange={onStatusChange} onBlur={deactivateEditMode} autoFocus={true} value={status}/>
+                    <input onChange={onStatusChange} onBlur={deactivateEditMode} autoFocus={true} value={status} />
                 </div>
             }
 

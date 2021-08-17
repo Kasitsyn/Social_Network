@@ -12,7 +12,7 @@ const MyPostForm = (props) => {
     return (
         <form action="" onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder="what's new?" name='newPostText' component={Textarea} validate={[required, maxLength10]}/>
+                <Field placeholder="what's new?" name='newPostText' component={Textarea} validate={[required, maxLength10]} />
             </div>
             <div>
                 <button>Add post</button>
@@ -21,9 +21,10 @@ const MyPostForm = (props) => {
     )
 }
 
-const MyPosts = (props) => {
-
-    let postsElements = props.posts.map(p => <Post message={p.message} key={p.id} likesCount={p.likesCount} />)
+const MyPosts = React.memo(props => {
+    console.log("my post")
+    console.log(props)
+    let postsElements = [...props.posts].reverse().map(p => <Post message={p.message} key={p.id} likesCount={p.likesCount} />)
 
     let onAddPost = (values) => {
         props.addPost(values.newPostText)
@@ -31,6 +32,7 @@ const MyPosts = (props) => {
     }
 
     return (
+
         <div className={s.postsBlock}>
             <div>
                 <h3>New post</h3>
@@ -48,7 +50,7 @@ const MyPosts = (props) => {
 
     );
 
-}
+})
 
 let MyPostReduxForm = reduxForm({ form: 'dialogsAddMessageForm' })(MyPostForm)
 
