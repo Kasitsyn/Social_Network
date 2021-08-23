@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './Components/Navbar/Navbar'
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Profile/ProfileContainer';
@@ -8,6 +8,7 @@ import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
 import { connect } from 'react-redux';
 import { Component } from 'react';
+import { compose } from 'redux';
 import { initializeApp } from './Redux/app-reducer';
 import Preloader from './Components/common/Preloader/Preloader';
 
@@ -38,4 +39,5 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, { initializeApp })(App);
+export default compose(
+  withRouter, connect(mapStateToProps , { initializeApp }))(App);

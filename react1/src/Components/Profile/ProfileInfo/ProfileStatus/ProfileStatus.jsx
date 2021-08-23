@@ -1,6 +1,5 @@
 import s from "./ProfileStatus.module.css"
 import React from 'react';
-// import { updateStatus } from './../../../../Redux/profile-reducer';
 
 class ProfileStatus extends React.Component {
 
@@ -59,3 +58,4 @@ class ProfileStatus extends React.Component {
     }
 }
 export default ProfileStatus;
+
