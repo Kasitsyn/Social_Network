@@ -2,7 +2,7 @@ import React from 'react'
 import userPhoto from '../../assets/images/Avatar.png'
 import style from './Users.module.css'
 import { NavLink } from 'react-router-dom'
-import Paginator from '../common/Paginator/Paginator'
+
 
 
 
