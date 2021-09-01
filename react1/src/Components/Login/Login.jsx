@@ -10,7 +10,8 @@ const maxLength100 = maxLengthCreator(100)
 
 const LoginForm = (props) => {
     return (
-        <form action="" onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit}>
+
             <div>
                 <Field placeholder={"email"} name={'email'} validate={[required]} component={Input} />
             </div>
@@ -18,11 +19,15 @@ const LoginForm = (props) => {
                 <Field placeholder={"password"} type={"password"} validate={[required]} name={'password'} component={Input} />
             </div>
             <div>
-                <Field  name={'rememberMe'} component={Input} type={"checkbox"} /> remember me
+                <Field name={'rememberMe'} component={Input} type={"checkbox"} /> remember me
             </div>
-            { props.error && <div className={style.formSummaryError}>
+
+            {props.captchaUrl && <img src={props.captchaUrl} />}
+            {props.captchaUrl && <Field placeholder={"Symbols from mage"} name={'captcha'} validate={[required]} component={Input} />}
+
+            {props.error && <div className={style.formSummaryError}>
                 {props.error}
-            </div> }
+            </div>}
             <div >
                 <button>Login</button>
             </div>
@@ -46,11 +51,12 @@ const Login = (props) => {
 
     return <div>
         <h1>LOGIN</h1>
-        <LoginReduxForm onSubmit={onSubmit} />
+        <LoginReduxForm captchaUrl={props.captchaUrl} onSubmit={onSubmit} />
     </div>
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 })
 export default connect(mapStateToProps, { logIn })(Login)
