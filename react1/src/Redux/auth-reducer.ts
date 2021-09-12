@@ -5,7 +5,15 @@ import { authAPI, securityAPI } from "../api/api"
 const SET_USER_DATA = 'SET_USER_DATA'
 const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS'
 
-let initialState = {
+export type InitialStateType = {
+    userId: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+    captchaUrl: string | null
+}
+
+let initialState: InitialStateType = {
     userId: null,
     email: null,
     login: null,
@@ -13,7 +21,7 @@ let initialState = {
     captchaUrl: null
 }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
         case GET_CAPTCHA_URL_SUCCESS:
@@ -27,7 +35,20 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } })
+type SetAuthUserDataActionPayloadType = {
+    userId: number
+    email: string
+    login: string
+    isAuth: boolean
+}
+
+type SetAuthUserDataActionType = {
+    type: typeof SET_USER_DATA 
+    payload: SetAuthUserDataActionPayloadType
+
+}
+
+const setAuthUserData = (userId: number, email: string, login: string, isAuth: boolean): SetAuthUserDataActionType => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } })
 export const getCaptchaUrlSuccess = (captchaUrl) => ({ type: GET_CAPTCHA_URL_SUCCESS, payload: { captchaUrl } })
 
 export const setAuthUserDataThunk = () => async (dispatch) => {

@@ -1,13 +1,25 @@
 
 import { setAuthUserDataThunk } from './auth-reducer';
 
-let initialState = {
+const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS"
+
+export type InitialStateType = {
+    initialized: boolean
+    
+}
+
+type InitializedSuccessActionType = {
+    type: typeof INITIALIZED_SUCCESS
+}
+
+
+let initialState: InitialStateType = {
     initialized: false
 }
 
-const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS"
 
-export const appReducer = (state = initialState, action) => {
+
+export const appReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -21,7 +33,7 @@ export const appReducer = (state = initialState, action) => {
 
 export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS })
 
-export const initializeApp = () => (dispatch) => {
+export const initializeApp = () => (dispatch: any) => {
     let promise = dispatch(setAuthUserDataThunk())
     Promise.all([promise]).then( () => dispatch( initializedSuccess() ) ) 
 }
