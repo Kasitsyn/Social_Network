@@ -19,7 +19,7 @@ let initialState: InitialStateType = {
 
 
 
-export const appReducer = (state = initialState, action: any) => {
+export const appReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -31,7 +31,7 @@ export const appReducer = (state = initialState, action: any) => {
     }
 }
 
-export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS })
+export const initializedSuccess = (): InitializedSuccessActionType => ({ type: INITIALIZED_SUCCESS })
 
 export const initializeApp = () => (dispatch: any) => {
     let promise = dispatch(setAuthUserDataThunk())
