@@ -7,11 +7,14 @@ type PropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
+    // toggleIsFollowInProgress: any
+    isFetching: boolean
     onPageChanged: (pageNumber: number) => void
     followInProgress: Array<number>
     users: Array<UserType>
-    unFollowThunk: () => void
-    followThunk: () => void
+    unFollowThunk: (userId: number) => void
+    followThunk: (userId: number) => void
+   
 }
 
 const Users: React.FC<PropsType> = (props) => {

@@ -34,7 +34,7 @@ class App extends Component {
             </Suspense>
           }} />
           <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
-          <Route path='/users' render={() => <UsersContainer />} />
+          <Route path='/users' render={() => <UsersContainer pageTitle={"Самураи"}/>} />
           <Route path='/login' render={() => <Login />} />
         </div>
 
