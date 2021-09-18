@@ -1,6 +1,7 @@
-import { usersAPI, profileAPI } from '../api/api';
 import { stopSubmit } from 'redux-form';
+import { profileAPI } from '../api/profile-api';
 import { PostDataType, ProfileType, PhotosType } from '../types/types';
+
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -105,8 +106,8 @@ export const setStatus = (status: string): SetStatusType => ({ type: SET_STATUS,
 export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessType => ({ type: SAVE_PHOTO_SUCCESS, photos })
 
 export const setUserProfileThunk = (userId: number) => async (dispatch: any) => {
-    let response = await usersAPI.setUser(userId)
-    dispatch(setUserProfile(response.data))
+    let profileData = await profileAPI.setUser(userId)
+    dispatch(setUserProfile(profileData))
 }
 
 export const getStatus = (userId: number) => async (dispatch: any) => {

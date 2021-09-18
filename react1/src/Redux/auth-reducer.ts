@@ -1,5 +1,7 @@
 import { stopSubmit } from "redux-form"
-import { authAPI, ResultCodeEnum, securityAPI } from "../api/api"
+import { ResultCodeEnum } from "../api/api"
+import { authAPI } from "../api/auth-api"
+import { securityAPI } from './../api/security-api';
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
