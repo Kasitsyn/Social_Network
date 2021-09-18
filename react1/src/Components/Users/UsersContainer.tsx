@@ -2,13 +2,13 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 
 import {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUserCount,
-    toggleIsFetching,
-    toggleIsFollowInProgress,
+    // follow,
+    // unfollow,
+    // setUsers,
+    // setCurrentPage,
+    // setTotalUserCount,
+    // toggleIsFetching,
+    // toggleIsFollowInProgress,
     getUsers,
     unFollowThunk,
     followThunk

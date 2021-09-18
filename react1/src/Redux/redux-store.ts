@@ -21,7 +21,11 @@ let rootReducer = combineReducers({
 type RootReducerType = typeof rootReducer 
 export type AppStateType = ReturnType<RootReducerType>
 
-let state: AppStateType
+type PropertiesTypes<T> = T extends{[key: string]: infer U} ? U : never
+
+//let state: AppStateType
+
+export type InferActionTypes<T extends{[key: string]: (...args: any[]) => any}> = ReturnType<PropertiesTypes<T>>
 
 //@ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
