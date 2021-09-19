@@ -1,30 +1,32 @@
-import { ProfileType } from "../types/types";
-import { instance } from "./api";
+import { PhotosType, ProfileType } from "../types/types"
+import { instance, ApiResponseType } from "./api"
+
+export type SavePhotosResponseDataType = {
+    photos: PhotosType
+}
 
 export const profileAPI = {
   setUser(userId: number) {
-    return instance.get<ProfileType>(`profile/${userId}`).then(res=>res.data);
+    return instance.get<ProfileType>(`profile/${userId}`).then(res=>res.data)
   },
 
   getStatus(userId: number) {
-    return instance.get(`profile/status/${userId}`);
+    return instance.get<string>(`profile/status/${userId}`).then(res=>res.data)
   },
 
   updateStatus(status: string) {
-    return instance.put('profile/status', {
-      status
-    });
+    return instance.put<ApiResponseType>('profile/status', {status}).then(res=>res.data)
   },
 
   savePhoto(photoFile: any) {
-    const formData = new FormData();
-    formData.append('image', photoFile);
-    return instance.put('profile/photo', formData);
+    const formData = new FormData()
+    formData.append('image', photoFile)
+    return instance.put<ApiResponseType<SavePhotosResponseDataType>>('profile/photo', formData).then(res=>res.data)
   },
 
   saveProfile(profile: ProfileType) {
-    return instance.put('profile', profile);
+    return instance.put<ApiResponseType>('profile', profile).then(res=>res.data)
   }
 
-};
+}
   

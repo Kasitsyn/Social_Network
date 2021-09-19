@@ -1,4 +1,5 @@
 import { stopSubmit } from 'redux-form';
+import { ResultCodeEnum } from '../api/api';
 import { profileAPI } from '../api/profile-api';
 import { PostDataType, ProfileType, PhotosType } from '../types/types';
 
@@ -106,35 +107,34 @@ export const setStatus = (status: string): SetStatusType => ({ type: SET_STATUS,
 export const savePhotoSuccess = (photos: PhotosType): SavePhotoSuccessType => ({ type: SAVE_PHOTO_SUCCESS, photos })
 
 export const setUserProfileThunk = (userId: number) => async (dispatch: any) => {
-    let profileData = await profileAPI.setUser(userId)
-    dispatch(setUserProfile(profileData))
+    let data = await profileAPI.setUser(userId)
+    dispatch(setUserProfile(data))
 }
 
 export const getStatus = (userId: number) => async (dispatch: any) => {
-    let response = await profileAPI.getStatus(userId)
-    dispatch(setStatus(response.data))
-
+    let data = await profileAPI.getStatus(userId)
+    dispatch(setStatus(data))
 }
 
 export const updateStatus = (status: string) => async (dispatch: any) => {
-    let response = await profileAPI.updateStatus(status)
-    if (response.data.resultCode === 0) dispatch(setStatus(status))
+    let data = await profileAPI.updateStatus(status)
+    if (data.resultCode === ResultCodeEnum.Success) dispatch(setStatus(status))
 
 }
 
 export const savePhoto = (file: any) => async (dispatch: any) => {
-    let response = await profileAPI.savePhoto(file)
-    if (response.data.resultCode === 0) dispatch(savePhotoSuccess(response.data.data.photos))
+    let data = await profileAPI.savePhoto(file)
+    if (data.resultCode === ResultCodeEnum.Success) dispatch(savePhotoSuccess(data.data.photos))
 
 }
 
 export const saveProfile = (profile: ProfileType) => async (dispatch: any, getState: any) => {
     const userId = getState().auth.userId
-    const response = await profileAPI.saveProfile(profile)
-    if (response.data.resultCode === 0) dispatch(setUserProfileThunk(userId))
+    const data = await profileAPI.saveProfile(profile)
+    if (data.resultCode === ResultCodeEnum.Success) dispatch(setUserProfileThunk(userId))
     else {
-        dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }))
-        return Promise.reject(response.data.messages[0])
+        dispatch(stopSubmit("edit-profile", { _error: data.messages[0] }))
+        return Promise.reject(data.messages[0])
     }
 }
 

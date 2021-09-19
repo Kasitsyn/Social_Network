@@ -8,7 +8,7 @@ export const instance = axios.create({
 
 })
 
-export type ResponseType<D = {}, RC = ResultCodeEnum> = {
+export type ApiResponseType<D = {}, RC = ResultCodeEnum> = {
     data: D
     messages: Array<string>
     resultCode: RC
