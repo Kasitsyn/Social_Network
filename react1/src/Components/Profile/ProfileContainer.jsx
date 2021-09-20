@@ -1,9 +1,9 @@
 import React from 'react';
 import Profile from './Profile';
-import { setUserProfileThunk, getStatus, updateStatus, savePhoto, saveProfile } from './../../Redux/profile-reducer';
+import { setUserProfileThunk, getStatus, updateStatus, savePhoto, saveProfile } from '../../Redux/profile-reducer';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { withAuthRedirect } from './../../hoc/withAuthRedirect';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 let mapStateToProps = (state) => ({

@@ -9,12 +9,9 @@ import { Component, React } from 'react';
 import { compose } from 'redux';
 import { initializeApp } from './Redux/app-reducer';
 import Preloader from './Components/common/Preloader/Preloader';
-//import DialogsContainer from './Components/Dialogs/DialogsContainer';
-//import ProfileContainer from './Components/Profile/ProfileContainer';
 import { withSuspense } from './hoc/withSuspense';
 import { lazy } from 'react';
 import { Suspense } from 'react';
-
 const DialogsContainer = lazy(() => import('./Components/Dialogs/DialogsContainer'))
 const ProfileContainer = lazy(() => import('./Components/Profile/ProfileContainer'))
 class App extends Component {

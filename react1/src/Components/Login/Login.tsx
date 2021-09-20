@@ -6,9 +6,6 @@ import { logIn } from '../../Redux/auth-reducer';
 import { Redirect } from "react-router-dom";
 import style from "../common/FormsControls/FormsControls.module.css";
 import { AppStateType } from "../../Redux/redux-store";
-//import { getCaptchaUrl } from './../../Redux/auth-reducer';
-
-//const maxLength100 = maxLengthCreator(100)
 
 type MapStatePropsType = {
     captchaUrl: string | null

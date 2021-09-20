@@ -1,9 +1,15 @@
 import s from './Dialogs.module.css'
 import DialogsItem from './DialogItem/DialogsItem'
 import MessagesItem from './MessagesItem/MessagesItem'
+import { DialogType, MessageDataType } from '../../Redux/dialogs-reducer'
 
+type PropsType = {
+    dialogData: Array<DialogType>
+    messageData: Array<MessageDataType>
+    sendMessage: (messageTxt: string) => void
+}
 
-const Dialogs = (props) => {
+const Dialogs: React.FC<PropsType>  = (props) => {
     
     return (
         <div className={s.dialogs}>
@@ -11,7 +17,6 @@ const Dialogs = (props) => {
                 dialogData={props.dialogData} />
             <MessagesItem
                 messageData={props.messageData}
-                //newMessageBody={props.newMessageBody}
                 sendMessage={props.sendMessage}
             />
         </div>
