@@ -1,6 +1,5 @@
 import s from './../Dialogs.module.css'
 import React from 'react'
-import { sendMessageCreator, updateNewMessageBodyCreator } from '../../../Redux/dialogs-reducer'
 import { Field } from 'redux-form'
 import { reduxForm } from 'redux-form';
 import { Textarea } from '../../common/FormsControls/FormsControls';

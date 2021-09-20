@@ -11,7 +11,7 @@ let mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+
 
 })
 
@@ -32,7 +32,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.match.params.userId != prevProps.match.params.userId) this.refreshProfile()
+        if (this.props.match.params.userId !== prevProps.match.params.userId) this.refreshProfile()
     }
 
     render() {

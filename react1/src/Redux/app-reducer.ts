@@ -1,5 +1,5 @@
 
-import { setAuthUserDataThunk } from './auth-reducer';
+import { getAuthUserDataThunk } from './auth-reducer';
 import { InferActionTypes } from './redux-store';
 
 type ActionsType = InferActionTypes<typeof actions>
@@ -32,6 +32,6 @@ export const actions = {
 // export const initializedSuccess = (): InitializedSuccessActionType => ({ type: INITIALIZED_SUCCESS })
 
 export const initializeApp = () => (dispatch: any) => {
-    let promise = dispatch(setAuthUserDataThunk())
+    let promise = dispatch(getAuthUserDataThunk())
     Promise.all([promise]).then( () => dispatch( actions.initializedSuccess() ) ) 
 }

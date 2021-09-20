@@ -1,4 +1,5 @@
-import profileReducer, { addPostActionCreator, deletePost } from './profile-reducer';
+import { PostDataType} from '../types/types';
+import profileReducer, { actions } from './profile-reducer';
 
 let state = {
     postData: [
@@ -6,12 +7,15 @@ let state = {
         { id: 2, message: "It's my first post!", likesCount: 23 },
         { id: 3, message: "Yo!", likesCount: 223 },
         { id: 4, message: "AUF", likesCount: 2212 }
-    ]
+    ] as PostDataType[],
+    profile: null,
+    status: "",
+    newPostText: ""
 
 }
 
 test('length of posts should be incremented', () => {
-    let action = addPostActionCreator('kavabanga!')
+    let action = actions.addPostActionCreator('kavabanga!')
     
     let newState = profileReducer(state, action)
 
@@ -19,7 +23,7 @@ test('length of posts should be incremented', () => {
 });
 
 test('message should be correct', () => {
-    let action = addPostActionCreator('kavabanga!')
+    let action = actions.addPostActionCreator('kavabanga!')
     
     let newState = profileReducer(state, action)
 
@@ -27,7 +31,7 @@ test('message should be correct', () => {
 });
 
 test('after deleting length should be decremented', () => {
-    let action = deletePost(1)
+    let action = actions.deletePost(1)
     
     let newState = profileReducer(state, action)
 
