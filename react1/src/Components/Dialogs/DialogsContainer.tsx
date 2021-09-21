@@ -8,10 +8,9 @@ import { AppStateType } from '../../Redux/redux-store';
 
 let mapStateToProps = (state: AppStateType) => {
     return {
-        dialogData: state.messagesPage.dialogData,
-        messageData: state.messagesPage.messageData,
+        dialogsPage: state.messagesPage,
         isAuth: state.auth.isAuth
     }
 }
 
-export default compose(connect(mapStateToProps, {sendMessage: actions.sendMessage}), withAuthRedirect)(Dialogs)
+export default compose(connect(mapStateToProps, {sendMessage: actions.sendMessage}), withAuthRedirect)(Dialogs) as React.ComponentType
