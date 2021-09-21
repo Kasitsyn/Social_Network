@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react'
 import Navbar from './Components/Navbar/Navbar'
-import { Route, withRouter, BrowserRouter } from 'react-router-dom';
+import { Route, withRouter, BrowserRouter, Redirect } from 'react-router-dom';
 import UsersContainer from './Components/Users/UsersContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
@@ -13,13 +13,17 @@ import Preloader from './Components/common/Preloader/Preloader';
 import { withSuspense } from './hoc/withSuspense';
 import { lazy } from 'react';
 import { Suspense } from 'react';
+import { Switch } from 'react-router';
 import store, { AppStateType } from './Redux/redux-store';
 const DialogsContainer = lazy(() => import('./Components/Dialogs/DialogsContainer'))
 const ProfileContainer = lazy(() => import('./Components/Profile/ProfileContainer'))
 
+const SuspensedDialogs = withSuspense(DialogsContainer)
+const SuspensedProfile = withSuspense(ProfileContainer)
+
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
-  initializeApp: () => void 
+  initializeApp: () => void
 }
 
 class App extends Component<MapPropsType & DispatchPropsType> {
@@ -41,18 +45,16 @@ class App extends Component<MapPropsType & DispatchPropsType> {
       ? <Preloader />
       : (<div className='app-wrapper' >
         <HeaderContainer />
-        < Navbar />
+        <Navbar />
         <div className="app-wrapper-content" >
-          <Route path='/profile/:userId?' render={() => {
-            return <Suspense fallback={
-              <div>Loading...</div>}>
-              < ProfileContainer />
-            </Suspense>
-          }
-          } />
-          < Route path='/dialogs' render={withSuspense(DialogsContainer)} />
-          <Route path='/users' render={() => <UsersContainer pageTitle={"Самураи"} />} />
-          <Route path='/login' render={() => <Login />} />
+          <Switch>
+            {/* <Route exact path='/'
+              render={() => <Redirect to={'/profile'} />} /> */}
+            <Route path='/profile' render={() => <SuspensedProfile/>} />
+            <Route path='/dialogs' render={() => <SuspensedDialogs/>} />
+            <Route path='/users' render={() => <UsersContainer pageTitle={"Самураи"} />} />
+            <Route path='/login' render={() => <Login />} />
+          </Switch>
         </div>
 
       </div>);
@@ -65,7 +67,7 @@ const mapStateToProps = (state: AppStateType) => ({
 })
 
 let AppContainer = compose<ComponentType>(
-  withRouter, connect(mapStateToProps, { initializeApp }))(App);  
+  withRouter, connect(mapStateToProps, { initializeApp }))(App);
 
 const SamuraiJSApp: React.FC = () => {
   return <BrowserRouter>
