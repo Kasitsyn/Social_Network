@@ -48,9 +48,9 @@ class App extends Component<MapPropsType & DispatchPropsType> {
         <Navbar />
         <div className="app-wrapper-content" >
           <Switch>
-            {/* <Route exact path='/'
-              render={() => <Redirect to={'/profile'} />} /> */}
-            <Route path='/profile' render={() => <SuspensedProfile/>} />
+            <Route exact path='/'
+              render={() => <Redirect to={'/profile'} />} />
+            <Route path='/profile/:userId?' render={() => <SuspensedProfile/>} />
             <Route path='/dialogs' render={() => <SuspensedDialogs/>} />
             <Route path='/users' render={() => <UsersContainer pageTitle={"Самураи"} />} />
             <Route path='/login' render={() => <Login />} />

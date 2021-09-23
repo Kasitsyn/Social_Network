@@ -3,30 +3,23 @@ import { Field } from 'redux-form'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import { reduxForm } from 'redux-form';
-import { maxLengthCreator, required } from './../../../utils/validators/validators';
+import { maxLengthCreator, required } from '../../../utils/validators/validators';
 import { Textarea } from '../../common/FormsControls/FormsControls';
+import AddPostForm, { AddPostFormValuesType } from '../AddPortForm/AddPostForm';
+import { PostDataType } from '../../../types/types';
 
-const maxLength10 = maxLengthCreator(10)
-
-const MyPostForm = (props) => {
-    return (
-        <form action="" onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder="what's new?" name='newPostText' component={Textarea} validate={[required, maxLength10]} />
-            </div>
-            <div>
-                <button>Add post</button>
-            </div>
-        </form>
-    )
+type PropsType = {
+    posts: Array<PostDataType>
+    addPost: (newPosttext: string) => void
 }
 
-const MyPosts = React.memo(props => {
+
+const MyPosts: React.FC<PropsType> = (props) => {
     console.log("my post")
     console.log(props)
     let postsElements = [...props.posts].reverse().map(p => <Post message={p.message} key={p.id} likesCount={p.likesCount} />)
 
-    let onAddPost = (values) => {
+    let onAddPost = (values: AddPostFormValuesType) => {
         props.addPost(values.newPostText)
 
     }
@@ -36,7 +29,7 @@ const MyPosts = React.memo(props => {
         <div className={s.postsBlock}>
             <div>
                 <h3>New post</h3>
-                <MyPostReduxForm onSubmit={onAddPost} />
+                <AddPostForm onSubmit={onAddPost} />
             </div>
             <div>
                 <h3>My posts</h3>
@@ -50,8 +43,8 @@ const MyPosts = React.memo(props => {
 
     );
 
-})
+}
 
-let MyPostReduxForm = reduxForm({ form: 'dialogsAddMessageForm' })(MyPostForm)
+const MyPostMemorized = React.memo(MyPosts)
 
-export default MyPosts;
+export default MyPostMemorized;

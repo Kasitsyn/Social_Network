@@ -14,16 +14,10 @@ type PropsType = {
     users: Array<UserType>
     unFollowThunk: (userId: number) => void
     followThunk: (userId: number) => void
-   
+
 }
 
 const Users: React.FC<PropsType> = (props) => {
-
-    let disabledFunc = (user: any) => {
-
-        return props.followInProgress.some(id => id === user.id)
-    }
-
 
     return <div>
         <Paginator
@@ -36,10 +30,10 @@ const Users: React.FC<PropsType> = (props) => {
         {
             props.users.map(u => <User
                 user={u}
-                disabledFunc={disabledFunc}
                 unFollowThunk={props.unFollowThunk}
                 followThunk={props.followThunk}
-                key={u.id} />
+                key={u.id}
+                followInProgress={props.followInProgress} />
             )
         }
     </div>

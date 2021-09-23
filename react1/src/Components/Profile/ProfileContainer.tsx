@@ -4,10 +4,11 @@ import Profile from './Profile';
 import { setUserProfileThunk, getStatus, updateStatus, savePhoto, saveProfile } from '../../Redux/profile-reducer';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { AppStateType } from '../../Redux/redux-store';
 import { ProfileType } from '../../types/types';
+import { withAuthRedirectNoTS } from './../../hoc/withAuthRedirectNoTS';
+
 type StateType = {}
 
 type MapStatePropsType = {
@@ -49,9 +50,9 @@ class ProfileContainer extends React.Component<PropsType> {
         this.refreshProfile()
     }
 
-    // componentDidUpdate(prevProps: PropsType, prevState: StateType, snapshot: any) {
-    //     if (this.props.match.params.userId !== prevProps.match.params.userId) this.refreshProfile()
-    // }
+    componentDidUpdate(prevProps: PropsType, prevState: StateType, snapshot: any) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) this.refreshProfile()
+    }
 
     render() {
         return (
@@ -77,4 +78,4 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 
 })
 
-export default compose(connect(mapStateToProps, { setUserProfileThunk, getStatus, updateStatus, savePhoto, saveProfile }), withRouter, withAuthRedirect)(ProfileContainer) as React.ComponentType
+export default compose(connect(mapStateToProps, { setUserProfileThunk, getStatus, updateStatus, savePhoto, saveProfile }), withRouter, withAuthRedirectNoTS)(ProfileContainer) as React.ComponentType
