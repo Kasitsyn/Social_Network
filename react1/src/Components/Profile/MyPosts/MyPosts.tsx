@@ -8,11 +8,16 @@ import { Textarea } from '../../common/FormsControls/FormsControls';
 import AddPostForm, { AddPostFormValuesType } from '../AddPortForm/AddPostForm';
 import { PostDataType } from '../../../types/types';
 
-type PropsType = {
+export type MapPropsType = {
     posts: Array<PostDataType>
+    
+}
+
+export type DispatchPropsType = {
     addPost: (newPosttext: string) => void
 }
 
+type PropsType = MapPropsType & DispatchPropsType
 
 const MyPosts: React.FC<PropsType> = (props) => {
     console.log("my post")

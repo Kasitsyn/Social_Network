@@ -8,7 +8,7 @@ import { useState, ChangeEvent } from 'react';
 import { ContactsType, ProfileType } from '../../../types/types';
 
 type PropsType = {
-    profile: ProfileType
+    profile: ProfileType | null
     savePhoto: (file: File) => void
     saveProfile: (profile: ProfileType) => Promise<any>
     isOwner: boolean
@@ -51,7 +51,7 @@ const ProfileInfo: React.FC<PropsType> = (props) => {
             </div>
 
             {editMode
-                ? <ProfileDataForm initialValues={props.profile} isOwner={props.isOwner} profile={props.profile} onSubmit={onSubmit} />
+                ? <ProfileDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit} />
                 : <ProfileData goToEditMode={() => setEditMode(true)} isOwner={props.isOwner} profile={props.profile} />}
 
             <div>

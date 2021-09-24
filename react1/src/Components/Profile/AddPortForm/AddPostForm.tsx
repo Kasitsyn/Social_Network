@@ -1,5 +1,6 @@
 import { Field, InjectedFormProps } from 'redux-form';
 import { reduxForm } from 'redux-form';
+import { Textarea } from '../../common/FormsControls/FormsControls';
 
 type PropsType = {
 
@@ -13,7 +14,7 @@ const AddPostForm: React.FC<InjectedFormProps<AddPostFormValuesType, PropsType> 
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={"textarea"} name={"newPostText"}/>
+                <Field component={Textarea} name={"newPostText"}/>
             </div>
             <div>
                 <button>
