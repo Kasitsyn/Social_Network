@@ -1,16 +1,10 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import {
-    // follow,
-    // unfollow,
-    // setUsers,
-    // setCurrentPage,
-    // setTotalUserCount,
-    // toggleIsFetching,
-    // toggleIsFollowInProgress,
     getUsers,
     unFollowThunk,
-    followThunk
+    followThunk,
+    FilterType
 } from '../../Redux/users-reducer'
 import Users from './Users'
 import React from 'react'
@@ -21,7 +15,8 @@ import {
     getPageSize,
     getTotalUsersCount,
     getIsFetching,
-    getFollowInProgress
+    getFollowInProgress,
+    getUserFilter
 } from '../../Redux/users-selectors';
 import { UserType } from '../../types/types'
 import { AppStateType } from '../../Redux/redux-store'
@@ -33,14 +28,15 @@ type MapStatePropsType = {
     totalUsersCount: number
     users: Array<UserType>
     followInProgress: Array<number>
+    filter: FilterType
+
 }
 
 type MapDispatchPropsType = {
     unFollowThunk: (userId: number) => void
     followThunk: (userId: number) => void
-    getUsers: (currentPage: number, pageSize: number) => void
-    // toggleIsFollowInProgress: any
-    
+    getUsers: (currentPage: number, pageSize: number, filter: FilterType) => void
+
 
 }
 
@@ -52,12 +48,17 @@ type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
 
 class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize, this.props.filter)
     }
 
     onPageChanged(pageNumber: number) {
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        
+        this.props.getUsers(pageNumber, this.props.pageSize, this.props.filter )
 
+    }
+
+    onFilterChanged(filter: FilterType) {
+        this.props.getUsers(1, this.props.pageSize, filter)
     }
 
     render() {
@@ -70,14 +71,12 @@ class UsersContainer extends React.Component<PropsType> {
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage}
                     users={this.props.users}
-                    // follow={this.props.follow}
-                    // unfollow={this.props.unfollow}
-                    // toggleIsFollowInProgress={this.props.toggleIsFollowInProgress}
                     onPageChanged={this.onPageChanged.bind(this)}
                     followInProgress={this.props.followInProgress}
                     unFollowThunk={this.props.unFollowThunk}
                     followThunk={this.props.followThunk}
-                    isFetching={this.props.isFetching} />}
+                    isFetching={this.props.isFetching}
+                    onFilterChanged={this.onFilterChanged.bind(this)} />}
 
 
 
@@ -93,20 +92,14 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         pageSize: getPageSize(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        followInProgress: getFollowInProgress(state)
+        followInProgress: getFollowInProgress(state),
+        filter: getUserFilter(state)
     }
 }
-//TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState
+
 export default compose(
     connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>
         (mapStateToProps, {
-            // follow,
-            // unfollow,
-            // setUsers,
-            // setCurrentPage,
-            // setTotalUserCount,
-            // toggleIsFetching,
-            // toggleIsFollowInProgress,
             unFollowThunk,
             followThunk,
             getUsers,
