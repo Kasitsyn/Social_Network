@@ -13,7 +13,7 @@ let initialState = {
     totalUsersCount: ResultCodeEnum.Success,
     currentPage: 1,
     maxUsers: 50,
-    isFetching: false,
+    isFetching: true,
     followInProgress: [] as Array<number>, // array of userId
     filter: {
         term: '',
