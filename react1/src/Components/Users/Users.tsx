@@ -9,6 +9,7 @@ import { unFollowThunk } from './../../Redux/users-reducer';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { PassThrough } from 'stream';
+import { Button } from 'antd/lib/radio';
 
 
 
@@ -71,6 +72,7 @@ export const Users: React.FC<PropsType> = (props) => {
     const unFollow = (userId: number) => dispatch(unFollowThunk(userId))
 
     return <div>
+        <Button type={'primary'}>FUCK</Button>
         <UsersSearchForm onFilterChanged={onFilterChanged} />
         <Paginator
             totalUsersCount={totalUsersCount}
