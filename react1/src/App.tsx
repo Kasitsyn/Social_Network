@@ -3,7 +3,7 @@ import React from 'react'
 import Navbar from './Components/Navbar/Navbar'
 import { Route, withRouter, BrowserRouter, Redirect } from 'react-router-dom';
 import HeaderContainer from './Components/Header/HeaderContainer';
-import Login from './Components/Login/Login';
+import {Login} from './Components/Login/Login';
 import { connect, Provider } from 'react-redux';
 import { Component, ComponentType } from 'react';
 import { compose } from 'redux';
@@ -16,11 +16,11 @@ import store, { AppStateType } from './Redux/redux-store';
 import {UsersPage} from './Components/Users/UsersContainer';
 
 const DialogsContainer = lazy(() => import('./Components/Dialogs/DialogsContainer'))
-const ProfileContainer = lazy(() => import('./Components/Profile/ProfileContainer'))
+const PropfilePage = lazy(() => import('./Components/Profile/ProfileContainer'))
 
 
 const SuspensedDialogs = withSuspense(DialogsContainer)
-const SuspensedProfile = withSuspense(ProfileContainer)
+const SuspensedProfile = withSuspense(PropfilePage)
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
