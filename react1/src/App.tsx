@@ -2,7 +2,7 @@ import './App.css';
 import 'antd/dist/antd.css'
 import React from 'react'
 import Navbar from './Components/Navbar/Navbar'
-import { Route, withRouter, BrowserRouter, Redirect } from 'react-router-dom';
+import { Route, withRouter, BrowserRouter, Redirect, Link } from 'react-router-dom';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import { Login } from './Components/Login/Login';
 import { connect, Provider } from 'react-redux';
@@ -17,11 +17,12 @@ import store, { AppStateType } from './Redux/redux-store';
 import { UsersPage } from './Components/Users/UsersContainer';
 import { Button } from 'antd/lib/radio';
 
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb, Avatar, Row, Col } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { Header } from './Components/Header/Header';
 
 const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 const DialogsContainer = lazy(() => import('./Components/Dialogs/DialogsContainer'))
 const PropfilePage = lazy(() => import('./Components/Profile/ProfileContainer'))
@@ -70,14 +71,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
 
 
       <Layout>
-        <Header className="header">
-          <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
-          </Menu>
-        </Header>
+        <Header />
         <Layout>
           <Sider width={200} className="site-layout-background">
             <Menu
@@ -86,14 +80,14 @@ class App extends Component<MapPropsType & DispatchPropsType> {
               defaultOpenKeys={['sub1']}
               style={{ height: '100%', borderRight: 0 }}
             >
-              <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-                <Menu.Item key="1">option1</Menu.Item>
-                <Menu.Item key="2">option2</Menu.Item>
+              <SubMenu key="sub1" icon={<UserOutlined />} title="My Progile">
+                <Menu.Item key="1"><Link to='/profile'>Profile</Link></Menu.Item>
+                <Menu.Item key="2"><Link to='/dialogs'>Messages</Link></Menu.Item>
                 <Menu.Item key="3">option3</Menu.Item>
                 <Menu.Item key="4">option4</Menu.Item>
               </SubMenu>
-              <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
-                <Menu.Item key="5">option5</Menu.Item>
+              <SubMenu key="sub2" icon={<LaptopOutlined />} title="Developers">
+                <Menu.Item key="5"><Link to='/developers'>Developers</Link></Menu.Item>
                 <Menu.Item key="6">option6</Menu.Item>
                 <Menu.Item key="7">option7</Menu.Item>
                 <Menu.Item key="8">option8</Menu.Item>
@@ -120,7 +114,14 @@ class App extends Component<MapPropsType & DispatchPropsType> {
                 minHeight: 280,
               }}
             >
-              Content
+              <Switch>
+                <Route exact path='/'
+                  render={() => <Redirect to={'/profile'} />} />
+                <Route path='/profile/:userId?' render={() => <SuspensedProfile />} />
+                <Route path='/dialogs' render={() => <SuspensedDialogs />} />
+                <Route path='/developers' render={() => <UsersPage pageTitle={"Самураи"} />} />
+                <Route path='/login' render={() => <Login />} />
+              </Switch>
             </Content>
           </Layout>
         </Layout>
