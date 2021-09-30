@@ -17,19 +17,22 @@ import store, { AppStateType } from './Redux/redux-store';
 import { UsersPage } from './Components/Users/UsersContainer';
 import { Button } from 'antd/lib/radio';
 
-import { Layout, Menu, Breadcrumb, Avatar, Row, Col } from 'antd';
+import { Layout, Menu, Breadcrumb, Avatar, Row, Col, Divider } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import { Header } from './Components/Header/Header';
+//import { ChatPage } from './pages/chat';
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
 const DialogsContainer = lazy(() => import('./Components/Dialogs/DialogsContainer'))
 const PropfilePage = lazy(() => import('./Components/Profile/ProfileContainer'))
+const ChatPage = lazy(() => import('./pages/Chat/ChatPage'))
 
 
 const SuspensedDialogs = withSuspense(DialogsContainer)
 const SuspensedProfile = withSuspense(PropfilePage)
+const SuspensedChatPage = withSuspense(ChatPage)
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
@@ -83,20 +86,15 @@ class App extends Component<MapPropsType & DispatchPropsType> {
               <SubMenu key="sub1" icon={<UserOutlined />} title="My Progile">
                 <Menu.Item key="1"><Link to='/profile'>Profile</Link></Menu.Item>
                 <Menu.Item key="2"><Link to='/dialogs'>Messages</Link></Menu.Item>
-                <Menu.Item key="3">option3</Menu.Item>
-                <Menu.Item key="4">option4</Menu.Item>
+
               </SubMenu>
               <SubMenu key="sub2" icon={<LaptopOutlined />} title="Developers">
                 <Menu.Item key="5"><Link to='/developers'>Developers</Link></Menu.Item>
-                <Menu.Item key="6">option6</Menu.Item>
-                <Menu.Item key="7">option7</Menu.Item>
-                <Menu.Item key="8">option8</Menu.Item>
+
               </SubMenu>
-              <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
-                <Menu.Item key="9">option9</Menu.Item>
-                <Menu.Item key="10">option10</Menu.Item>
-                <Menu.Item key="11">option11</Menu.Item>
-                <Menu.Item key="12">option12</Menu.Item>
+              <SubMenu key="sub3" icon={<NotificationOutlined />} title="Chat">
+                <Menu.Item key="9"><Link to='/chat'>Chat</Link></Menu.Item>
+
               </SubMenu>
             </Menu>
           </Sider>
@@ -121,6 +119,8 @@ class App extends Component<MapPropsType & DispatchPropsType> {
                 <Route path='/dialogs' render={() => <SuspensedDialogs />} />
                 <Route path='/developers' render={() => <UsersPage pageTitle={"Самураи"} />} />
                 <Route path='/login' render={() => <Login />} />
+                <Route path='/chat' render={() => <SuspensedChatPage />} />
+                <Route path='*' render={() => <div>404 NOT FOUND</div>} />
               </Switch>
             </Content>
           </Layout>
